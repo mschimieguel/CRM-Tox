@@ -17,7 +17,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-api = Api()
+api = Api(version='1.0', title='Message Monitor', description='API documentation of Message Monitor',doc="/swagger")
+
 
 api.init_app(app)
  
@@ -56,14 +57,18 @@ class GrupoSchema(ma.SQLAlchemyAutoSchema):
     fonte = fields.String(required=False, description="fonte de dados")
     dataExlusao = fields.String(required=False, description="data de exclusao")
 
-@api.route('/grupo', methods=['GET','PUT'])
+nsGrupo = Namespace("Grupo",  description="Operação Com Grupos")
+api.add_namespace(nsGrupo)
+
+@nsGrupo.route('/grupo', methods=['GET','PUT'])
 class GrupoResource(Resource):
     def get(self):
         return listarTodosGrupos()
+    @nsGrupo.expect(GrupoSchema, validate=True)
     def put(self):
          return cadastrarGrupo(id)
     
-@api.route('/grupo/<id>', methods=['PATCH','DELETE'])
+@nsGrupo.route('/grupo/<id>', methods=['PATCH','DELETE'])
 class GrupoResource(Resource):
     def patch(self,id):
         return alterarGrupo(id)
