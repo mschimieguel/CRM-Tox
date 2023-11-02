@@ -1,4 +1,5 @@
 #!/bin/bash
+#Use para automatizar o processo de adicionar uma biblioteca
 
 # Check if the user provided the action (install or uninstall) as the first argument
 if [ $# -lt 1 ]; then
