@@ -186,17 +186,6 @@ class ClienteSchema(ma.SQLAlchemyAutoSchema):
     def validate_id(self, value):
         raise ValidationError('Never send the id')
      
-
-
-
-
-
-
-
-
-
-
-
 cliente_model = nsCliente.model('Cliente', {
     'CPF_CNPJ': fields.String(required=False, description="identificador de Cliente PF ou PJ"),
     'nome': fields.String(required=False, description="Nome cliente"),
