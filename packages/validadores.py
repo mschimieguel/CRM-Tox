@@ -1,46 +1,14 @@
 import re
 from datetime import datetime
+import validate_docbr
 
-
-def validarCPF(cpf:str) -> bool:
-    if cpf is None:
+def validarCPF(strCpf:str) -> bool:
+    if strCpf is None:
       return True
-    if cpf=='': 
+    if strCpf=='': 
       return False
-    
-    cpf_standard = re.compile("[0-9]{3}[.][0-9]{3}[.][0-9]{3}[-][0-9]{2}$")
-    legal_format = cpf_standard.match(cpf)
-    if(not legal_format):
-      return False
-    
-    cpf = cpf.replace('.', '')
-    cpf = cpf.replace('-', '')
-    init_cpf = cpf
-    cpf = cpf[:9]
-    
-    checksum = 0
-    mult = 10
-    for num in range(9):
-        checksum += int(cpf[num]) * (mult - int(num))
-    rest = checksum % 11
-    if(rest<2):
-        first_digit = 0
-    else:
-        first_digit = 11-rest
-    cpf += str(first_digit)
-
-    checksum = 0
-    mult = 11
-    for num in range(10):
-        checksum += int(cpf[num]) * (mult - int(num))
-    rest = checksum % 11
-    if(rest<2):
-        second_digit = 0
-    else:
-        second_digit = 11-rest
-    cpf += str(second_digit)
-
-    return cpf==init_cpf
+    validador = validate_docbr.CPF()
+    return  validador.validate(strCpf)
 
 def validarCNPJ(cnpj:str) -> bool:
   if(cnpj is None):
