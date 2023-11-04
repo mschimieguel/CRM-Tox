@@ -31,7 +31,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-api = Api(version='1.0', title='Message Monitor', description='API documentation of Message Monitor',doc="/swagger")
+api = Api(version='1.0', title='CRM', description='API documentation of A Simple',doc="/swagger")
 
 
 api.init_app(app)
@@ -127,7 +127,7 @@ def bad_request(mensagem: str):
     return 400,response
 
 
-nsCliente = Namespace("cliente",  description="Operação Com Clientes")
+nsCliente = Namespace("Clientes",  description="Operação Com Clientes")
 api.add_namespace(nsCliente)
 
 class Cliente(db.Model):
