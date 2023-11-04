@@ -74,6 +74,7 @@ class GrupoSchema(ma.SQLAlchemyAutoSchema):
 nsGrupo = Namespace("Grupo",  description="Operação Com Grupos")
 api.add_namespace(nsGrupo)
 
+
 @nsGrupo.route('/grupo', methods=['GET','PUT'])
 class GrupoResource(Resource):
     def get(self):
@@ -127,6 +128,7 @@ def bad_request(mensagem: str):
 
 
 nsCliente = Namespace("cliente",  description="Operação Com Clientes")
+api.add_namespace(nsCliente)
 
 class Cliente(db.Model):
 
