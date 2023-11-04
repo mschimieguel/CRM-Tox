@@ -188,23 +188,23 @@ class ClienteSchema(ma.SQLAlchemyAutoSchema):
     def validate_id(self, value):
         raise ValidationError('Never send the id')
      
-cliente_model = nsCliente.model('Cliente', {
-    'CPF_CNPJ': fields.String(required=False, description="identificador de Cliente PF ou PJ"),
-    'nome': fields.String(required=False, description="Nome cliente"),
-    'email': fields.String(required=False, description="endereco de email"),
-    'telefone': fields.String(required=False,description="telefone"),
-    'whatsapp': fields.String(required=False,description="whatsapp para contato"),
-    'celular': fields.String(required=False,description="User's name"),
-    'dataNascimento': fields.String(required=False,description="User's name"),
-})
+# cliente_model = nsCliente.model('Cliente', {
+#     'CPF_CNPJ': fields.String(required=False, description="identificador de Cliente PF ou PJ"),
+#     'nome': fields.String(required=False, description="Nome cliente"),
+#     'email': fields.String(required=False, description="endereco de email"),
+#     'telefone': fields.String(required=False,description="telefone"),
+#     'whatsapp': fields.String(required=False,description="whatsapp para contato"),
+#     'celular': fields.String(required=False,description="User's name"),
+#     'dataNascimento': fields.String(required=False,description="User's name")
+# })
 
 
-# ROTAS 
-@nsCliente.route('/cadastrar', methods=['PUT'])
-class ClienteResource(Resource):
-    @nsCliente.expect(cliente_model, validate=True)
-    def put(self):
-        return cadastrarCliente()
+# # ROTAS 
+# @nsCliente.route('/cadastrar', methods=['PUT'])
+# class ClienteResource(Resource):
+#     @nsCliente.expect(cliente_model, validate=True)
+#     def put(self):
+#         return cadastrarCliente()
     
 @nsCliente.route("/listarTodos",methods=['GET'])
 class ClienteResource(Resource):
@@ -221,11 +221,11 @@ class ClientePFResource(Resource):
     def get(self):
         return listarPessoaFisica()
     
-@nsCliente.route('/<id>/atualizar', methods=['PATCH'])
-class ClienteResource(Resource):
-    @nsCliente.expect(cliente_model, validate=True)
-    def patch(self,id):
-        return atualizarCadastroCliente(id)
+# @nsCliente.route('/<id>/atualizar', methods=['PATCH'])
+# class ClienteResource(Resource):
+#     @nsCliente.expect(cliente_model, validate=True)
+#     def patch(self,id):
+#         return atualizarCadastroCliente(id)
     
 # @nsCliente.route('/<id>/apagarAtributo/<nomeAtributo>', methods=['DELETE'])
 # class ClienteResource(Resource):
