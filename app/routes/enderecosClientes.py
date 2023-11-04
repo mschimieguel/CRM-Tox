@@ -36,10 +36,6 @@ class EnderecoClienteResource(Resource):
     def put(self,idCliente):
         return cadastrarEnderecoCliente(idCliente)
 
-# api.add_namespace(nsEnderecoCliente)
-#Funcoes 
-
-
 def listarEnderecosCliente(idCliente):
     result = models.EnderecosCliente.query.filter_by(idCliente=idCliente).all()
     return EnderecosClienteSchema(many=True).jsonify(result)

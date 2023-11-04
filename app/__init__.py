@@ -35,13 +35,13 @@ def create_app(test_config=None) -> Flask:
     with app.app_context():
         db.create_all()  
 
-        from app.routes import cliente, Produto, enderecoscliente
-        from app.routes import nsCliente, nsEnderecoCliente,nsProduto
+        from app.routes import nsCliente, nsEnderecoCliente,nsProduto,nsGrupo
       
         api = Api(app, version='1.0', title='Simple CRM', description='API documentation',doc="/swagger")
         api.add_namespace(nsCliente)
         api.add_namespace(nsEnderecoCliente)
         api.add_namespace(nsProduto)
+        api.add_namespace(nsGrupo)
         
         return app
 

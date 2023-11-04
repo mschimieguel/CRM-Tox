@@ -9,8 +9,6 @@ from datetime import datetime
 
 nsGrupo = Namespace("Grupo",  description="Operação Com Grupos")
 
-
-
 @nsGrupo.route('/grupo', methods=['GET','PUT'])
 class GrupoResource(Resource):
     def get(self):
