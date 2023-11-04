@@ -10,46 +10,14 @@ def validarCPF(strCpf:str) -> bool:
     validador = validate_docbr.CPF()
     return  validador.validate(strCpf)
 
-def validarCNPJ(cnpj:str) -> bool:
-  if(cnpj is None):
+def validarCNPJ(strCnpj:str) -> bool:
+  if(strCnpj is None):
     return True
-  if cnpj == '': 
+  if strCnpj == '': 
       return False
   
-  cnpj_standard = re.compile("[0-9]{2}[.][0-9]{3}[.][0-9]{3}[/][0-9]{4}[-][0-9]{2}$")
-  legal_format = cnpj_standard.match(cnpj)
-  if(not legal_format):
-    return False
-  
-  cnpj = cnpj.replace('.', '')
-  cnpj = cnpj.replace('-', '')
-  cnpj = cnpj.replace('/', '')
-  init_cnpj = cnpj
-  cnpj = cnpj[:12]
-
-  checksum = 0
-  mult = [5,4,3,2,9,8,7,6,5,4,3,2]
-  for num in range(12):
-    checksum += int(cnpj[num]) * mult[num]
-  rest = checksum % 11
-  if(rest<2):
-    first_digit = 0
-  else:
-    first_digit = 11 - rest
-  cnpj += str(first_digit)
-
-  checksum = 0
-  mult = [6,5,4,3,2,9,8,7,6,5,4,3,2]
-  for num in range(13):
-    checksum += int(cnpj[num]) * mult[num]
-  rest = checksum % 11
-  if(rest<2):
-    second_digit = 0
-  else:
-    second_digit = 11 - rest
-  cnpj += str(second_digit)
-
-  return cnpj==init_cnpj
+  validador = validate_docbr.CNPJ()
+  return  validador.validate(strCnpj)
 
 def validarCPF_CNPJ(cpfCnpj:str) -> bool:
   return validarCPF(cpfCnpj) or validarCNPJ(cpfCnpj)
