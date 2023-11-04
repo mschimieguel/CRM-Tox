@@ -25,7 +25,6 @@ def unauthorized(mensagem : str):
     }
     return jsonify(response), 401
 
-
 def not_found(mensagem : str):
     response = {
         'success': False,
