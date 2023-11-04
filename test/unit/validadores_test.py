@@ -26,10 +26,15 @@ class TestValidarCPF(unittest.TestCase):
         resultado = validadores.validarCPF(cpfInvalido)
         self.assertFalse(resultado)  
 
+    def test_cpf_formato_sem_pontuacao(self):
+        cpfFormatovalido = '12345678909'  
+        resultado = validadores.validarCPF(cpfFormatovalido)
+        self.assertTrue(resultado)  
+        
     def test_cpf_formato_incorreto(self):
-        cpfFormatoInvalido = '12345678910'  
+        cpfFormatoInvalido = '1234567890a'  
         resultado = validadores.validarCPF(cpfFormatoInvalido)
-        self.assertFalse(resultado)  
+        self.assertFalse(resultado) 
 class TestValidarCNPJ(unittest.TestCase):
     
     def test_cpf_indefinido(self):
@@ -41,8 +46,12 @@ class TestValidarCNPJ(unittest.TestCase):
         cnpj_valido = '11.222.333/0001-81'
         self.assertTrue(validadores.validarCNPJ(cnpj_valido))  
         
-    def test_cnpj_formato_incorreto(self):
+    def test_cnpj_formato_sem_pontuacao(self):
         cnpj_formatoInvalido = '11222333000181'
+        self.assertTrue(validadores.validarCNPJ(cnpj_formatoInvalido))
+    
+    def test_cnpj_formato_incorreto(self):
+        cnpj_formatoInvalido = '1122233300018a'
         self.assertFalse(validadores.validarCNPJ(cnpj_formatoInvalido))
 
     def test_cnpj_invalido(self):
