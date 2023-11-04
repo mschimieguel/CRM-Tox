@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 import validate_docbr
+from validate_email_address import validate_email
 
 def validarCPF(strCpf:str) -> bool:
     if strCpf is None:
@@ -27,29 +28,7 @@ def validarEmail(email:str) -> bool:
     return True
   if email == '': 
       return False
-  size = len(email)
-  at, dot, dot_before_at ,dot_after_at = 0, 0, 0, 0
-  for i in range(size):
-    symbol = email[i]
-    if(symbol=='@'):
-      if(at>0):
-        return False
-      at += 1
-      if(i<3):
-        return False
-    elif(at>0):
-      if(dot>0):
-        dot_after_at += 1
-      elif(symbol=='.'):
-        dot = 1
-        if(dot_before_at<3):
-          return False
-      else:
-        dot_before_at += 1
-  if(i+1==size and dot_after_at>1):
-    return True
-  else:
-    return False
+  return validate_email(email)
 
 def validarCelular(celular:str) -> bool:
   if(celular==None):
