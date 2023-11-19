@@ -1,3 +1,6 @@
+[![GitHub Actions (Tests)](https://github.com/MoonBreezes/CRM/actions/workflows/master_messagemonitormoonbreezes.yml/badge.svg)](https://github.com/MoonBreezes/CRM/actions/workflows/master_messagemonitormoonbreezes.yml)
+
+
 # Sistema de controle de acesso com Interface Web e API REST
 ### 1. Nomes dos membros do grupo:
 
